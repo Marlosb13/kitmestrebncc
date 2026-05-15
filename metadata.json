@@ -1,0 +1,6 @@
+{
+  "name": "Kit Estratégico BNCC",
+  "description": "Página de vendas para o Kit Estratégico BNCC - Materiais para ensinar sem computador.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
