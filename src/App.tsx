@@ -56,12 +56,15 @@ const Button: React.FC<{
   };
 
   return (
-    <button 
+    <div 
+      role="button"
+      tabIndex={0}
       onClick={onClick}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onClick?.(); }}
       className={`w-full py-4 px-6 rounded-xl font-black text-lg cursor-pointer flex items-center justify-center gap-2 ${variants[variant]} ${className}`}
     >
       {children}
-    </button>
+    </div>
   );
 };
 
@@ -165,7 +168,7 @@ export default function App() {
             
 
 
-            <div className="mt-4 mx-auto max-w-sm rounded-[2rem] overflow-hidden shadow-2xl">
+            <div className="mt-4 mx-auto max-w-sm rounded-[2rem] overflow-hidden shadow-2xl bg-slate-100 aspect-[4/5]">
               <img 
                 src="https://i.postimg.cc/DygzfDSQ/5ifb-J-(1).webp" 
                 alt="Kit Estratégico BNCC"
@@ -173,7 +176,9 @@ export default function App() {
                 referrerPolicy="no-referrer"
                 loading="eager"
                 decoding="async"
-                fetchpriority="high"
+                fetchPriority="high"
+                width={384}
+                height={480}
               />
             </div>
           </div>
@@ -210,6 +215,8 @@ export default function App() {
                   referrerPolicy="no-referrer"
                   loading="lazy"
                   decoding="async"
+                  width={48}
+                  height={48}
                 />
               ))}
             </div>
@@ -384,11 +391,13 @@ export default function App() {
               <div className="flex items-center gap-4">
                 <img 
                   src={t.avatar} 
-                  className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-md" 
+                  className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-md bg-slate-100" 
                   alt={t.name}
                   referrerPolicy="no-referrer"
                   loading="lazy"
                   decoding="async"
+                  width={48}
+                  height={48}
                 />
                 <div>
                    <p className="font-black text-[#0C2551] text-base">{t.name}</p>
@@ -464,6 +473,8 @@ export default function App() {
                   referrerPolicy="no-referrer"
                   loading="lazy"
                   decoding="async"
+                  width={400}
+                  height={300}
                 />
               </div>
 
@@ -633,12 +644,15 @@ export default function App() {
                 ))}
              </ul>
 
-             <button 
+             <div 
+               role="button"
+               tabIndex={0}
                onClick={() => window.location.href = "https://pagamento.checkoutseguro.shop/checkout/v5/txbjsUAp3SBSGcqICWkx"}
-               className="w-full py-4 bg-[#22c55e] hover:bg-[#16a34a] rounded-2xl font-black text-white shadow-lg shadow-green-900/10 transition-colors uppercase text-xs tracking-widest"
+               onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") window.location.href = "https://pagamento.checkoutseguro.shop/checkout/v5/txbjsUAp3SBSGcqICWkx"; }}
+               className="w-full py-4 bg-[#22c55e] hover:bg-[#16a34a] rounded-2xl font-black text-white shadow-lg shadow-green-900/10 transition-colors uppercase text-xs tracking-widest text-center cursor-pointer"
              >
                 QUERO O PACOTE BÁSICO
-             </button>
+             </div>
           </div>
         </div>
       </section>
