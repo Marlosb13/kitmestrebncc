@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { 
   CheckCircle2, 
   XCircle, 
@@ -80,6 +81,7 @@ const SectionHeading: React.FC<{ children: React.ReactNode; badge?: string; badg
 export default function App() {
   const [timeLeft, setTimeLeft] = useState(3600); // 60:00 in seconds
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
+  const [showUpsell, setShowUpsell] = useState(false);
 
   const scrollToPricing = () => {
     const element = document.getElementById("pricing");
@@ -414,7 +416,7 @@ export default function App() {
       <section className="py-12 px-6 bg-[#06132b]">
         <div className="text-center space-y-4 mb-12">
           <Badge className="bg-[#e4bf23] text-[#0C2551] font-black px-6 py-2">BÔNUS EXCLUSIVOS</Badge>
-          <h2 className="text-3xl font-black text-white leading-tight">Bônus Exclusivos Para Quem Garantir o Kit Mestre BNCC Desplugada Hoje</h2>
+          <h2 className="text-3xl font-black text-white leading-tight">Bônus Exclusivos Para Quem Garantir o Kit Mestre BNCC Hoje</h2>
           <p className="text-center text-white/70 text-sm max-w-xs mx-auto">Levando o Kit Estratégico Essencial HOJE, você desbloqueia 4 materiais extras:</p>
         </div>
         
@@ -562,14 +564,14 @@ export default function App() {
 
              <div className="pt-6">
                 <p className="text-white/40 text-xs font-black tracking-widest uppercase">ACESSO COMPLETO + TODOS OS BÔNUS</p>
-                <h3 className="text-3xl font-black text-white mt-1">Kit Mestre BNCC Desplugada</h3>
+                <h3 className="text-3xl font-black text-white mt-1">Kit Mestre BNCC</h3>
                 <p className="text-white/60 text-base mt-3 mb-8">Do Infantil ao 5º ano</p>
              </div>
              
              <div className="bg-white/5 rounded-[2rem] p-8 mb-8">
                 <p className="text-xs text-white/50 font-black uppercase tracking-[0.2em] mb-4">Valor individual dos materiais:</p>
                 <div className="space-y-3 pb-6 border-b border-white/10">
-                   <div className="flex justify-between text-white text-xs font-bold"><span>Dinâmicas Desplugadas</span> <span className="line-through">R$ 97</span></div>
+                   <div className="flex justify-between text-white text-xs font-bold"><span>Dinâmicas</span> <span className="line-through">R$ 97</span></div>
                    <div className="flex justify-between text-white text-xs font-bold"><span>Storytelling & Lógica</span> <span className="line-through">R$ 97</span></div>
                    <div className="flex justify-between text-white text-xs font-bold"><span>Banco de Planos</span> <span className="line-through">R$ 97</span></div>
                    <div className="flex justify-between text-white text-xs font-bold"><span>Atividades Interdisciplinares</span> <span className="line-through">R$ 97</span></div>
@@ -586,7 +588,7 @@ export default function App() {
 
              <ul className="grid grid-cols-1 gap-4 mb-10">
                 {[
-                  "Mais de 600 Dinâmicas Desplugadas",
+                  "Mais de 600 Dinâmicas",
                   "Habilidades BNCC organizadas",
                   "Acesso imediato e vitalício",
                   "Atividades de lógica e representação binária",
@@ -606,9 +608,9 @@ export default function App() {
                </p>
              </div>
 
-             <Button variant="success" className="uppercase font-black text-xs py-6 rounded-2xl bg-[#22c55e] text-white hover:bg-[#16a34a]" onClick={() => window.location.href = "https://pagamento.checkoutseguro.shop/checkout/v5/qppegBTZJAhMgbVrsLxw"}>
+             <Button variant="success" className="uppercase font-black text-xs py-6 rounded-2xl bg-[#22c55e] text-white hover:bg-[#16a34a] text-center" onClick={() => window.location.href = "https://pagamento.checkoutseguro.shop/checkout/v5/qppegBTZJAhMgbVrsLxw"}>
                 QUERO GARANTIR O KIT COMPLETO
-             </Button>
+              </Button>
 
              <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-3 text-white max-w-[280px] mx-auto">
                <span className="text-[10px] font-bold flex items-center justify-center gap-1 uppercase tracking-widest text-white/80">✓ Compra protegida</span>
@@ -634,7 +636,7 @@ export default function App() {
 
              <ul className="space-y-4 mb-10 w-full">
                 {[
-                  "100 Dinâmicas Desplugadas",
+                  "100 Dinâmicas",
                   "Conteúdo alinhado à BNCC",
                   "Acesso Vitalício"
                 ].map((item, i) => (
@@ -647,8 +649,8 @@ export default function App() {
              <div 
                role="button"
                tabIndex={0}
-               onClick={() => window.location.href = "https://pagamento.checkoutseguro.shop/checkout/v5/txbjsUAp3SBSGcqICWkx"}
-               onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") window.location.href = "https://pagamento.checkoutseguro.shop/checkout/v5/txbjsUAp3SBSGcqICWkx"; }}
+               onClick={() => setShowUpsell(true)}
+               onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setShowUpsell(true); }}
                className="w-full py-4 bg-[#22c55e] hover:bg-[#16a34a] rounded-2xl font-black text-white shadow-lg shadow-green-900/10 transition-colors uppercase text-xs tracking-widest text-center cursor-pointer"
              >
                 QUERO O PACOTE BÁSICO
@@ -699,6 +701,77 @@ export default function App() {
       <footer className="py-8 bg-[#06132b] text-center text-xs text-white/30 uppercase tracking-[0.2em] font-bold">
         <p>© 2026 Método Dev Expresso Concursos. Todos os direitos reservados.</p>
       </footer>
+
+      {/* Upsell Pop-up */}
+      <AnimatePresence>
+        {showUpsell && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 sm:p-4">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowUpsell(false)}
+              className="absolute inset-0 bg-[#0C2551]/80 backdrop-blur-sm"
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-sm bg-[#0C2551] rounded-[2.5rem] p-8 sm:p-10 shadow-2xl border border-white/10 overflow-hidden"
+            >
+              {/* Close Button */}
+              <button 
+                onClick={() => setShowUpsell(false)}
+                className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors"
+              >
+                 <XCircle size={24} />
+              </button>
+
+              <div className="flex flex-col items-center text-center space-y-6">
+                <Badge className="bg-[#e4bf23] text-[#0C2551] px-4 py-1.5 font-black text-[10px] rounded-full shadow-lg">
+                  Oferta exclusiva antes de finalizar
+                </Badge>
+
+                <div className="space-y-2">
+                  <p className="text-[#e4bf23] text-xs font-black uppercase tracking-widest leading-none">
+                    Espere! Libere o Kit Completo com Desconto
+                  </p>
+                  <h3 className="text-xl sm:text-2xl font-black text-white leading-tight">
+                    Hoje você pode desbloquear o Kit Mestre BNCC completo por apenas <span className="text-[#e4bf23]">R$ 14,90</span>
+                  </h3>
+                </div>
+
+                <div className="py-2 px-4 bg-white/5 rounded-xl border border-white/5">
+                  <p className="text-white/70 text-xs font-bold leading-relaxed">
+                    +600 atividades prontas + bônus exclusivos + acesso imediato
+                  </p>
+                </div>
+
+                <div className="w-full space-y-4 pt-2">
+                  <Button 
+                    variant="primary" 
+                    className="py-5 text-sm sm:text-base bg-[#e4bf23] text-[#0C2551] hover:bg-[#d4b020] uppercase font-black tracking-tight w-full shadow-xl shadow-yellow-500/10"
+                    onClick={() => window.location.href = "https://pagamento.checkoutseguro.shop/checkout/v5/o8Ob1mv5B2Y0buiTTHeP"}
+                  >
+                    QUERO O KIT COMPLETO POR R$ 14,90
+                  </Button>
+
+                  <button 
+                    onClick={() => window.location.href = "https://pagamento.checkoutseguro.shop/checkout/v5/txbjsUAp3SBSGcqICWkx"}
+                    className="text-white/30 text-xs font-bold hover:text-white/50 transition-colors tracking-widest underline underline-offset-4"
+                  >
+                    Continuar apenas com o básico
+                  </button>
+                </div>
+              </div>
+
+              {/* Decorative elements */}
+              <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#e4bf23] opacity-5 blur-3xl rounded-full" />
+              <div className="absolute -top-10 -left-10 w-32 h-32 bg-white opacity-5 blur-3xl rounded-full" />
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
