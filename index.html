@@ -7,13 +7,11 @@
     
     <!-- Resource Hints -->
     <link rel="preconnect" href="https://cdn.utmify.com.br" />
-    <link rel="dns-prefetch" href="https://cdn.utmify.com.br" />
     <link rel="preconnect" href="https://i.postimg.cc" />
-    <link rel="dns-prefetch" href="https://i.postimg.cc" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://scripts.converteai.net" />
-    <link rel="dns-prefetch" href="https://scripts.converteai.net" />
+    
+    <!-- LCP Image Preload (High Priority) -->
+    <link rel="preload" as="image" href="https://i.postimg.cc/DygzfDSQ/5ifb-J-(1).webp" fetchpriority="high" />
     
     <!-- Critical CSS for Hero -->
     <style>
@@ -25,6 +23,7 @@
         font-family: var(--font-sans);
         background-color: #f8fafc;
         -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeSpeed;
       }
       #root {
         min-height: 100vh;
@@ -32,6 +31,7 @@
       .bg-white { background-color: #ffffff; }
       .text-center { text-align: center; }
       .font-black { font-weight: 900; }
+      .bg-slate-50 { background-color: #f8fafc; }
     </style>
 
     <!-- Preload Primary Font -->
