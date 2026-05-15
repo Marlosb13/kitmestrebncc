@@ -7,34 +7,36 @@
     
     <!-- Resource Hints -->
     <link rel="preconnect" href="https://cdn.utmify.com.br" />
+    <link rel="dns-prefetch" href="https://cdn.utmify.com.br" />
     <link rel="preconnect" href="https://i.postimg.cc" />
+    <link rel="dns-prefetch" href="https://i.postimg.cc" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://pagamento.checkoutseguro.shop" />
+    <link rel="dns-prefetch" href="https://pagamento.checkoutseguro.shop" />
     
     <!-- LCP Image Preload (High Priority) -->
     <link rel="preload" as="image" href="https://i.postimg.cc/DygzfDSQ/5ifb-J-(1).webp" fetchpriority="high" />
     
     <!-- Critical CSS for Hero -->
     <style>
-      :root {
-        --font-sans: 'Inter', system-ui, sans-serif;
-      }
+      :root { --font-sans: 'Inter', system-ui, sans-serif; }
       body {
         margin: 0;
         font-family: var(--font-sans);
         background-color: #f8fafc;
         -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeSpeed;
+        text-rendering: optimizeLegibility;
       }
-      #root {
-        min-height: 100vh;
-      }
+      #root { min-height: 100vh; }
       .bg-white { background-color: #ffffff; }
       .text-center { text-align: center; }
       .font-black { font-weight: 900; }
       .bg-slate-50 { background-color: #f8fafc; }
     </style>
 
-    <!-- Preload Primary Font -->
+    <!-- Preload Primary Font with Swap -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" as="style" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" media="print" onload="this.media='all'" />
     <noscript>

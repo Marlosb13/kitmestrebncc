@@ -75,6 +75,15 @@ const SectionHeading: React.FC<{ children: React.ReactNode; badge?: string; badg
   </div>
 );
 
+const testimonialsData = [
+  { name: "Beatriz Oliveira", avatar: "https://i.postimg.cc/zvTVkGDj/7bffb1fa-a02d-44ae-9f39-1678b52a253a.webp", role: "Professora do 3º ano", text: '“Abri o material e consegui aplicar a primeira atividade no mesmo dia. A turma participou muito mais.”', stars: 5 },
+  { name: "Fernanda Sousa", avatar: "https://i.postimg.cc/65N7pnzF/capture-260221-125951.webp", role: "Pedagoga", text: '“Voltei a sentir prazer em planejar minhas aulas. Tudo muito organizado e fácil de usar.”', stars: 5 },
+  { name: "Larissa Pereira", avatar: "https://i.postimg.cc/Hs4rcnhr/capture-260221-130204.webp", role: "Educação Infantil", text: '“As crianças aprenderam lógica brincando. Achei que seria difícil, mas elas amaram.”', stars: 5 },
+  { name: "Matheus Araújo", avatar: "https://i.postimg.cc/cLxrQWph/capture-260408-210659.webp", role: "Coordenador Pedagógico", text: '“Indicamos para toda a equipe pedagógica da escola. Facilitou completamente nosso planejamento.”', stars: 5 },
+  { name: "Camila Barbosa", avatar: "https://i.postimg.cc/bNzz5Tms/capture-260221-130609.webp", role: "Professora do 5º ano", text: '“Ganhei horas livres no domingo porque as atividades já vêm prontas.”', stars: 5 },
+  { name: "Tatiana Gomes", avatar: "https://i.postimg.cc/RZY4Nz4c/596458c1-2719-49a3-a11c-054249648444.webp", role: "Professora do 2º ano", text: '“Os pais começaram a comentar em casa sobre as aulas. Virou referência positiva na escola.”', stars: 5 }
+];
+
 // --- Sections ---
 
 export default function App() {
@@ -101,15 +110,6 @@ export default function App() {
     const s = seconds % 60;
     return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   };
-
-  const testimonialsData = [
-    { name: "Beatriz Oliveira", avatar: "https://i.postimg.cc/zvTVkGDj/7bffb1fa-a02d-44ae-9f39-1678b52a253a.webp", role: "Professora do 3º ano", text: '“Abri o material e consegui aplicar a primeira atividade no mesmo dia. A turma participou muito mais.”', stars: 5 },
-    { name: "Fernanda Sousa", avatar: "https://i.postimg.cc/65N7pnzF/capture-260221-125951.webp", role: "Pedagoga", text: '“Voltei a sentir prazer em planejar minhas aulas. Tudo muito organizado e fácil de usar.”', stars: 5 },
-    { name: "Larissa Pereira", avatar: "https://i.postimg.cc/Hs4rcnhr/capture-260221-130204.webp", role: "Educação Infantil", text: '“As crianças aprenderam lógica brincando. Achei que seria difícil, mas elas amaram.”', stars: 5 },
-    { name: "Matheus Araújo", avatar: "https://i.postimg.cc/cLxrQWph/capture-260408-210659.webp", role: "Coordenador Pedagógico", text: '“Indicamos para toda a equipe pedagógica da escola. Facilitou completamente nosso planejamento.”', stars: 5 },
-    { name: "Camila Barbosa", avatar: "https://i.postimg.cc/bNzz5Tms/capture-260221-130609.webp", role: "Professora do 5º ano", text: '“Ganhei horas livres no domingo porque as atividades já vêm prontas.”', stars: 5 },
-    { name: "Tatiana Gomes", avatar: "https://i.postimg.cc/RZY4Nz4c/596458c1-2719-49a3-a11c-054249648444.webp", role: "Professora do 2º ano", text: '“Os pais começaram a comentar em casa sobre as aulas. Virou referência positiva na escola.”', stars: 5 }
-  ];
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-slate-200 overflow-x-hidden">
