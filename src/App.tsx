@@ -27,6 +27,7 @@ import {
 const Testimonials = lazy(() => import("./components/Testimonials"));
 const Bonus = lazy(() => import("./components/Bonus"));
 const Pricing = lazy(() => import("./components/Pricing"));
+const ActivitiesShowcase = lazy(() => import("./components/ActivitiesShowcase"));
 
 // --- Components ---
 
@@ -154,7 +155,7 @@ export default function App() {
                 alt="Kit Estratégico BNCC"
                 className="w-full h-auto"
                 loading="eager"
-                decoding="async"
+                decoding="sync"
                 fetchPriority="high"
                 width={384}
                 height={480}
@@ -208,7 +209,8 @@ export default function App() {
         </div>
       </section>
 
-      <Suspense fallback={<div className="py-20 text-center font-bold text-slate-400">Carregando recursos...</div>}>
+      <Suspense fallback={<div className="py-12 bg-white" />}>
+        <ActivitiesShowcase />
         <Bonus />
         <Testimonials testimonials={testimonialsData} />
         <Pricing setShowUpsell={setShowUpsell} />

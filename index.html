@@ -17,28 +17,24 @@
     <link rel="dns-prefetch" href="https://pagamento.checkoutseguro.shop" />
     
     <!-- LCP Image Preload (High Priority) -->
-    <link rel="preload" as="image" href="https://i.postimg.cc/DygzfDSQ/5ifb-J-(1).webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="https://i.postimg.cc/DZB6z8Nz/Chat-GPT-(1).webp" fetchpriority="high" />
     
-    <!-- Critical CSS for Hero -->
+    <!-- Critical CSS for Hero - Inline for instant rendering above the fold -->
     <style>
-      :root { --font-sans: 'Inter', system-ui, sans-serif; }
-      body {
-        margin: 0;
-        font-family: var(--font-sans);
-        background-color: #f8fafc;
-        -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;
-      }
+      :root { --font-sans: 'Inter', system-ui, -apple-system, sans-serif; --blue-dark: #0C2551; --yellow-primary: #e4bf23; }
+      body { margin: 0; font-family: var(--font-sans); background-color: #f8fafc; -webkit-font-smoothing: antialiased; text-rendering: optimizeSpeed; }
       #root { min-height: 100vh; }
+      .hero-title { font-size: 2.6rem; font-weight: 900; line-height: 1.05; color: var(--blue-dark); letter-spacing: -0.025em; }
       .bg-white { background-color: #ffffff; }
       .text-center { text-align: center; }
-      .font-black { font-weight: 900; }
-      .bg-slate-50 { background-color: #f8fafc; }
+      .max-w-2xl { max-width: 42rem; }
+      .mx-auto { margin-left: auto; margin-right: auto; }
+      .sticky-bar { position: sticky; top: 0; z-index: 50; background: var(--blue-dark); height: 40px; display: flex; align-items: center; justify-content: center; }
     </style>
 
-    <!-- Preload Primary Font with Swap -->
+    <!-- Optimized Font Loading -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" as="style" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" media="print" onload="this.media='all'; this.onload=null;" />
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" />
     </noscript>
