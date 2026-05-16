@@ -135,7 +135,7 @@ export default function App() {
 
       {/* Hero Section */}
       <section className="pt-6 pb-8 px-6 text-center bg-white">
-        <div className="max-w-2xl mx-auto space-y-6">
+        <div className="max-w-2xl mx-auto space-y-4">
           <Badge className="bg-[#e4bf23] text-[#0C2551] flex items-center gap-2 mx-auto w-fit py-2 px-5 font-black text-sm rounded-full">
              Atualizado conforme a BNCC 2026
           </Badge>
@@ -148,9 +148,9 @@ export default function App() {
               Mais de 600 atividades práticas prontas para aplicar ainda hoje
             </span>
 
-            <div className="mt-4 mx-auto max-w-sm rounded-[2rem] overflow-hidden shadow-2xl bg-slate-100 aspect-[4/5]">
+            <div className="mx-auto max-w-sm rounded-[2rem] overflow-hidden shadow-2xl bg-slate-100">
               <img 
-                src="https://i.postimg.cc/DygzfDSQ/5ifb-J-(1).webp" 
+                src="https://i.postimg.cc/DZB6z8Nz/Chat-GPT-(1).webp" 
                 alt="Kit Estratégico BNCC"
                 className="w-full h-auto"
                 loading="eager"
@@ -162,7 +162,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 mt-8">
+          <div className="grid grid-cols-2 gap-3">
             {[
               { icon: <CheckCircle2 className="text-[#00BC70]" size={16} />, label: "Sem computador" },
               { icon: <CheckCircle2 className="text-[#00BC70]" size={16} />, label: "Sem perder horas" },
@@ -176,7 +176,7 @@ export default function App() {
             ))}
           </div>
 
-          <div className="pt-8 space-y-4">
+          <div className="pt-4 space-y-4">
             <Button variant="success" className="py-6 rounded-2xl text-xl bg-[#22c55e] hover:bg-[#16a34a] shadow-lg" onClick={scrollToPricing}>
               Quero Adquirir Agora <ArrowRight size={22} className="stroke-[3]" />
             </Button>
