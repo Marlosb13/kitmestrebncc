@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Star, CheckCircle2 } from "lucide-react";
 
 interface PricingProps {
@@ -6,6 +6,13 @@ interface PricingProps {
 }
 
 const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
+  useEffect(() => {
+    // Utmify propagation for SPAs
+    if ((window as any).utmifyPropagate) {
+      (window as any).utmifyPropagate();
+    }
+  }, []);
+
   return (
     <section id="pricing" className="py-12 px-6 bg-white text-center">
       <div className="text-center mb-10">
@@ -61,12 +68,12 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
               ))}
            </ul>
 
-           <button 
-             onClick={() => window.location.href = "https://pagamento.checkoutseguro.shop/checkout/v5/qppegBTZJAhMgbVrsLxw"}
-             className="w-full py-6 uppercase font-black text-xs rounded-2xl bg-[#22c55e] text-white hover:bg-[#16a34a] transition-colors text-center"
+           <a 
+             href="https://pagamento.checkoutseguro.shop/checkout/v5/qppegBTZJAhMgbVrsLxw"
+             className="w-full py-6 uppercase font-black text-xs rounded-2xl bg-[#22c55e] text-white hover:bg-[#16a34a] transition-colors text-center block"
            >
               QUERO GARANTIR O KIT COMPLETO
-           </button>
+           </a>
 
            <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-3 text-white max-w-[280px] mx-auto">
              <span className="text-[10px] font-bold flex items-center justify-center gap-1 uppercase tracking-widest text-white/80">✓ Compra protegida</span>
@@ -102,12 +109,15 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
               ))}
            </ul>
 
-           <button 
+           <div 
+             role="button"
+             tabIndex={0}
              onClick={() => setShowUpsell(true)}
+             onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setShowUpsell(true); }}
              className="w-full py-4 bg-[#22c55e] hover:bg-[#16a34a] rounded-2xl font-black text-white shadow-lg shadow-green-900/10 transition-colors uppercase text-xs tracking-widest text-center cursor-pointer"
            >
               QUERO O PACOTE BÁSICO
-           </button>
+           </div>
         </div>
       </div>
     </section>

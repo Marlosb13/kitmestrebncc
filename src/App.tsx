@@ -7,7 +7,6 @@ import React, { useState, useEffect, lazy, Suspense } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { 
   CheckCircle2, 
-  XOutline as XCircleIcon, // Using XOutline to avoid conflict if needed, or stick to XCircle
   Clock, 
   BookOpen, 
   ShieldCheck, 
@@ -89,6 +88,18 @@ const testimonialsData = [
 export default function App() {
   const [timeLeft, setTimeLeft] = useState(3600);
   const [showUpsell, setShowUpsell] = useState(false);
+
+  useEffect(() => {
+    if ((window as any).utmifyPropagate) {
+      (window as any).utmifyPropagate();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (showUpsell && (window as any).utmifyPropagate) {
+      (window as any).utmifyPropagate();
+    }
+  }, [showUpsell]);
 
   const scrollToPricing = () => {
     const element = document.getElementById("pricing");
@@ -235,9 +246,9 @@ export default function App() {
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 sm:p-4">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setShowUpsell(false)} className="absolute inset-0 bg-[#0C2551]/80 backdrop-blur-sm" />
             <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }} className="relative w-full max-w-sm bg-[#0C2551] rounded-[2.5rem] p-8 sm:p-10 shadow-2xl border border-white/10 overflow-hidden text-center">
-              <button onClick={() => setShowUpsell(false)} className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors">
+              <div role="button" tabIndex={0} onClick={() => setShowUpsell(false)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setShowUpsell(false); }} className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors cursor-pointer">
                  <XCircle size={24} />
-              </button>
+              </div>
               <div className="flex flex-col items-center text-center space-y-6">
                 <Badge className="bg-[#e4bf23] text-[#0C2551] px-4 py-1.5 font-black text-[10px] rounded-full shadow-lg">Oferta exclusiva antes de finalizar</Badge>
                 <div className="space-y-2">
@@ -248,8 +259,19 @@ export default function App() {
                   <p className="text-white/70 text-xs font-bold">+600 atividades prontas + bônus exclusivos + acesso imediato</p>
                 </div>
                 <div className="w-full space-y-4 pt-2">
-                  <Button variant="primary" className="py-5 text-sm sm:text-base bg-[#e4bf23] text-[#0C2551] uppercase font-black tracking-tight w-full" onClick={() => window.location.href = "https://pagamento.checkoutseguro.shop/checkout/v5/o8Ob1mv5B2Y0buiTTHeP"}>QUERO O KIT COMPLETO POR R$ 14,90</Button>
-                  <button onClick={() => window.location.href = "https://pagamento.checkoutseguro.shop/checkout/v5/txbjsUAp3SBSGcqICWkx"} className="text-white/30 text-xs font-bold hover:text-white/50 transition-colors tracking-widest underline underline-offset-4">Continuar apenas com o básico</button>
+                  <a 
+                    href="https://pagamento.checkoutseguro.shop/checkout/v5/o8Ob1mv5B2Y0buiTTHeP"
+                    className="py-5 text-sm sm:text-base bg-[#e4bf23] text-[#0C2551] uppercase font-black tracking-tight w-full rounded-xl flex items-center justify-center shadow-xl shadow-yellow-500/10 hover:bg-[#d4b020] transition-colors"
+                  >
+                    QUERO O KIT COMPLETO POR R$ 14,90
+                  </a>
+
+                  <a 
+                    href="https://pagamento.checkoutseguro.shop/checkout/v5/txbjsUAp3SBSGcqICWkx"
+                    className="text-white/30 text-xs font-bold hover:text-white/50 transition-colors tracking-widest underline underline-offset-4 block"
+                  >
+                    Continuar apenas com o básico
+                  </a>
                 </div>
               </div>
             </motion.div>
