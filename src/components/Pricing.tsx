@@ -54,7 +54,7 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
 
            <ul className="grid grid-cols-1 gap-4 mb-10">
               {[
-                "Mais de 600 Dinâmicas",
+                "Mais de 600 Atividades",
                 "Habilidades BNCC organizadas",
                 "Acesso imediato e vitalício",
                 "Atividades de lógica e representação binária",
@@ -99,7 +99,7 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
 
            <ul className="space-y-4 mb-10 w-full">
               {[
-                "100 Dinâmicas",
+                "100 Atividades",
                 "Conteúdo alinhado à BNCC",
                 "Acesso Vitalício"
               ].map((item, i) => (
