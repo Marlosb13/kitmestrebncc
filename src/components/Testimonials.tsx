@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 interface Testimonial {
   name: string;
@@ -20,22 +20,114 @@ const images = [
 const carouselImages = [...images, ...images, ...images];
 
 const Testimonials: React.FC<{ testimonials?: Testimonial[] }> = () => {
-  const [isPaused, setIsPaused] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isMouseDown, setIsMouseDown] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeftState, setScrollLeftState] = useState(0);
+
+  // Set initial scroll position to the middle third of the carousel
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const setInitialPos = () => {
+      if (container.scrollWidth > 0) {
+        container.scrollLeft = container.scrollWidth / 3;
+      }
+    };
+
+    setInitialPos();
+
+    window.addEventListener("load", setInitialPos);
+    const interval = setInterval(() => {
+      if (container.scrollLeft === 0 && container.scrollWidth > 100) {
+        container.scrollLeft = container.scrollWidth / 3;
+        clearInterval(interval);
+      }
+    }, 150);
+
+    return () => {
+      window.removeEventListener("load", setInitialPos);
+      clearInterval(interval);
+    };
+  }, []);
+
+  // Frame-by-frame auto-scrolling loop
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    let animationId: number;
+    let lastTime = performance.now();
+
+    const step = (now: number) => {
+      const elapsed = now - lastTime;
+      
+      // Auto-scroll when user is not interacting
+      if (!isMouseDown) {
+        const distance = elapsed * 0.045; // adjustment factor for smooth scroll speed
+        container.scrollLeft += distance;
+
+        // Perform wrapping correction beautifully
+        const oneThird = container.scrollWidth / 3;
+        if (oneThird > 0) {
+          if (container.scrollLeft >= oneThird * 2) {
+            container.scrollLeft -= oneThird;
+          } else if (container.scrollLeft <= 0) {
+            container.scrollLeft += oneThird;
+          }
+        }
+      }
+
+      lastTime = now;
+      animationId = requestAnimationFrame(step);
+    };
+
+    animationId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animationId);
+  }, [isMouseDown]);
+
+  // Drag-to-scroll event handlers for desktop mouse interaction
+  const handleMouseDown = (e: React.MouseEvent) => {
+    const container = containerRef.current;
+    if (!container) return;
+    setIsMouseDown(true);
+    setStartX(e.pageX - container.offsetLeft);
+    setScrollLeftState(container.scrollLeft);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isMouseDown) return;
+    e.preventDefault();
+    const container = containerRef.current;
+    if (!container) return;
+    const x = e.pageX - container.offsetLeft;
+    const walk = (x - startX) * 1.5; // drag sensitivity multiplier
+    container.scrollLeft = scrollLeftState - walk;
+  };
+
+  const handleMouseUpOrLeave = () => {
+    setIsMouseDown(false);
+  };
+
+  // Touch handlers for seamless mobile interaction (native swipe)
+  const handleTouchStart = () => {
+    setIsMouseDown(true);
+  };
+
+  const handleTouchEnd = () => {
+    setIsMouseDown(false);
+  };
 
   return (
     <section className="py-12 bg-white text-center overflow-hidden">
       <style>{`
-        @keyframes customMarquee {
-          0% {
-            transform: translate3d(0, 0, 0);
-          }
-          100% {
-            transform: translate3d(-33.33333%, 0, 0);
-          }
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
         }
-        .custom-marquee-animate {
-          animation: customMarquee 20s linear infinite;
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
       <div className="text-center mb-8 px-6">
@@ -44,24 +136,25 @@ const Testimonials: React.FC<{ testimonials?: Testimonial[] }> = () => {
         </h2>
       </div>
       
-      <div 
-        className="w-full overflow-hidden relative cursor-pointer"
-        onClick={() => setIsPaused(!isPaused)}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div className="flex w-full group">
+      <div className="w-full overflow-hidden relative">
+        <div 
+          ref={containerRef}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUpOrLeave}
+          onMouseLeave={handleMouseUpOrLeave}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="flex w-full overflow-x-auto no-scrollbar touch-pan-x cursor-grab active:cursor-grabbing select-none"
+        >
           <div
-            className="flex gap-4 px-4 custom-marquee-animate"
-            style={{
-              width: "max-content",
-              animationPlayState: (isPaused || isHovered) ? "paused" : "running",
-            }}
+            className="flex gap-4 px-4"
+            style={{ width: "max-content" }}
           >
             {carouselImages.map((src, index) => (
               <div
                 key={index}
-                className="w-[60vw] md:w-[320px] shrink-0 transform transition-transform duration-500 hover:scale-[1.02] cursor-pointer"
+                className="w-[60vw] md:w-[320px] shrink-0 transform transition-transform duration-500 hover:scale-[1.01]"
               >
                 <img
                   src={src}
@@ -74,7 +167,6 @@ const Testimonials: React.FC<{ testimonials?: Testimonial[] }> = () => {
             ))}
           </div>
         </div>
-        
       </div>
     </section>
   );
