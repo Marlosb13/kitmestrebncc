@@ -1,5 +1,5 @@
 import React from "react";
-import { Star, Quote } from "lucide-react";
+import { motion } from "motion/react";
 
 interface Testimonial {
   name: string;
@@ -9,43 +9,65 @@ interface Testimonial {
   stars: number;
 }
 
-const Testimonials: React.FC<{ testimonials: Testimonial[] }> = ({ testimonials }) => {
+const images = [
+  "https://i.postimg.cc/jSW469YW/Chat-GPT-(3).webp",
+  "https://i.postimg.cc/XvdKmCJS/Chat-GPT-(5).webp",
+  "https://i.postimg.cc/nLbB4h1g/Chat-GPT-(6).webp",
+  "https://i.postimg.cc/XvLqrj1F/Chat-GPT-(8).webp",
+  "https://i.postimg.cc/50t0vhD3/Chat-GPT-(10).webp"
+];
+
+// Duplicated for an extra smooth, seamless infinite scrolling carousel
+const carouselImages = [...images, ...images, ...images];
+
+const Testimonials: React.FC<{ testimonials?: Testimonial[] }> = () => {
   return (
-    <section className="py-10 px-6 bg-white text-center">
-      <div className="text-center mb-10">
-        <h2 className="text-3xl font-black text-[#0C2551] leading-tight mb-2">Professoras estão transformando suas aulas</h2>
+    <section className="py-12 bg-white text-center overflow-hidden">
+      <div className="text-center mb-8 px-6">
+        <h2 className="text-3xl font-black text-[#0C2551] leading-tight mb-2">
+          Professoras estão transformando suas aulas
+        </h2>
       </div>
       
-      <div className="max-w-md mx-auto space-y-6">
-        {testimonials.map((t, i) => (
-          <div key={i} className="bg-slate-50 p-8 rounded-[2.5rem] relative text-left shadow-sm border border-slate-100/50">
-            <Quote className="text-[#e4bf23] mb-4 opacity-50" size={32} />
-            <div className="flex gap-0.5 mb-4">
-              {[...Array(t.stars)].map((_, si) => (
-                <Star key={si} size={14} className="fill-[#e4bf23] text-[#e4bf23]" />
-              ))}
-            </div>
-            <p className="text-base font-bold text-slate-700 leading-relaxed mb-6 italic">"{t.text}"</p>
-            <div className="flex items-center gap-4">
-              <img 
-                src={t.avatar} 
-                className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-md bg-slate-100" 
-                alt={t.name}
-                loading="lazy"
-                decoding="async"
-                width={48}
-                height={48}
-              />
-              <div>
-                 <p className="font-black text-[#0C2551] text-base">{t.name}</p>
-                 <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">{t.role}</p>
+      <div className="w-full overflow-hidden relative">
+        <div className="flex w-full group">
+          <motion.div
+            className="flex gap-4 px-4"
+            animate={{
+              x: [0, "-33.333%"],
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 20,
+                ease: "linear",
+              },
+            }}
+            style={{ width: "max-content" }}
+            whileHover={{ animationPlayState: "paused" }}
+          >
+            {carouselImages.map((src, index) => (
+              <div
+                key={index}
+                className="w-[60vw] md:w-[320px] shrink-0 transform transition-transform duration-500 hover:scale-[1.02] cursor-default"
+              >
+                <img
+                  src={src}
+                  alt={`Depoimento ${index + 1}`}
+                  className="w-full h-auto object-contain rounded-none border-0 shadow-none block"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
-            </div>
-          </div>
-        ))}
+            ))}
+          </motion.div>
+        </div>
+        
       </div>
     </section>
   );
 };
 
 export default Testimonials;
+
