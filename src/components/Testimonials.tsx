@@ -1,5 +1,4 @@
-import React from "react";
-import { motion } from "motion/react";
+import React, { useState } from "react";
 
 interface Testimonial {
   name: string;
@@ -21,47 +20,59 @@ const images = [
 const carouselImages = [...images, ...images, ...images];
 
 const Testimonials: React.FC<{ testimonials?: Testimonial[] }> = () => {
+  const [isPaused, setIsPaused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <section className="py-12 bg-white text-center overflow-hidden">
+      <style>{`
+        @keyframes customMarquee {
+          0% {
+            transform: translate3d(0, 0, 0);
+          }
+          100% {
+            transform: translate3d(-33.33333%, 0, 0);
+          }
+        }
+        .custom-marquee-animate {
+          animation: customMarquee 20s linear infinite;
+        }
+      `}</style>
       <div className="text-center mb-8 px-6">
         <h2 className="text-3xl font-black text-[#0C2551] leading-tight mb-2">
           Professoras estão transformando suas aulas
         </h2>
       </div>
       
-      <div className="w-full overflow-hidden relative">
+      <div 
+        className="w-full overflow-hidden relative cursor-pointer"
+        onClick={() => setIsPaused(!isPaused)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <div className="flex w-full group">
-          <motion.div
-            className="flex gap-4 px-4"
-            animate={{
-              x: [0, "-33.333%"],
+          <div
+            className="flex gap-4 px-4 custom-marquee-animate"
+            style={{
+              width: "max-content",
+              animationPlayState: (isPaused || isHovered) ? "paused" : "running",
             }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 20,
-                ease: "linear",
-              },
-            }}
-            style={{ width: "max-content" }}
-            whileHover={{ animationPlayState: "paused" }}
           >
             {carouselImages.map((src, index) => (
               <div
                 key={index}
-                className="w-[60vw] md:w-[320px] shrink-0 transform transition-transform duration-500 hover:scale-[1.02] cursor-default"
+                className="w-[60vw] md:w-[320px] shrink-0 transform transition-transform duration-500 hover:scale-[1.02] cursor-pointer"
               >
                 <img
                   src={src}
                   alt={`Depoimento ${index + 1}`}
-                  className="w-full h-auto object-contain rounded-none border-0 shadow-none block"
+                  className="w-full h-auto object-contain rounded-none border-0 shadow-none block pointer-events-none select-none"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
         
       </div>
