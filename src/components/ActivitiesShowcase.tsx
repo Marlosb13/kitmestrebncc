@@ -23,7 +23,7 @@ export const ActivitiesShowcase: React.FC<ActivitiesShowcaseProps> = () => {
       <div className="container mx-auto px-6 mb-12">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-black text-[#0C2551] leading-tight tracking-tight">
-            Veja Como São as Atividades do <span className="text-[#0C2551]">Kit Mestre BNCC</span>
+            Veja Como São as <span className="text-[#0C2551]">+600 Atividades de Pensamento Computacional BNCC</span>
           </h2>
           <p className="text-slate-500 font-bold text-sm md:text-base leading-relaxed">
             Materiais organizados, modernos e 100% prontos para imprimir e aplicar em sala de aula.

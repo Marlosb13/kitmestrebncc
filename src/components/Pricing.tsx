@@ -30,8 +30,8 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
 
            <div className="pt-6">
               <p className="text-white/40 text-xs font-black tracking-widest uppercase">ACESSO COMPLETO + TODOS OS BÔNUS</p>
-              <h3 className="text-3xl font-black text-white mt-1">Kit Mestre BNCC</h3>
-              <p className="text-white/60 text-base mt-3 mb-8">Do Infantil ao 5º ano</p>
+              <h3 className="text-3xl font-black text-white mt-1 text-center">+600 Atividades de Pensamento Computacional BNCC</h3>
+              <p className="text-white/60 text-base mt-3 mb-8 text-center">Do 1º ao 5º ano</p>
            </div>
            
            <div className="bg-white/5 rounded-[2rem] p-8 mb-8">
@@ -86,7 +86,7 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
         {/* Secondary Card */}
         <div className="bg-slate-50/50 rounded-[2.5rem] p-10 border-2 border-slate-100 flex flex-col items-center text-center">
            <p className="text-slate-400 text-[10px] font-black tracking-[0.2em] uppercase">Pacote Básico</p>
-           <h4 className="text-2xl font-black text-[#0C2551] mt-2 mb-4">Kit Fundamental Prático</h4>
+           <h4 className="text-2xl font-black text-[#0C2551] mt-2 mb-4">100 Atividades de Pensamento Computacional BNCC</h4>
            <p className="text-slate-400 text-xs mb-8">Ideal para quem precisa começar imediatamente</p>
            
            <div className="mb-8">
