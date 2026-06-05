@@ -151,7 +151,7 @@ export default function App() {
 
             <div className="mx-auto max-w-sm rounded-[2rem] overflow-hidden shadow-2xl bg-slate-100">
               <img 
-                src="https://i.postimg.cc/cJKRB8P4/141511-removebg-preview.png" 
+                src="https://i.imgur.com/Q2kijes.png" 
                 alt="Kit Estratégico BNCC"
                 className="w-full h-auto"
                 loading="eager"
