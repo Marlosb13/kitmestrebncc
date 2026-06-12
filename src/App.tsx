@@ -272,7 +272,7 @@ export default function App() {
                     href="https://pagamento.checkoutseguro.shop/checkout/v5/txbjsUAp3SBSGcqICWkx"
                     className="text-white/30 text-xs font-bold hover:text-white/50 transition-colors tracking-widest underline underline-offset-4 block"
                   >
-                    Continuar apenas com o básico
+                    QUERO O BÁSICO
                   </a>
                 </div>
               </div>
