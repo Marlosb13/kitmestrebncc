@@ -128,6 +128,15 @@ export default function App() {
     if (showUpsell && (window as any).utmifyPropagate) {
       (window as any).utmifyPropagate();
     }
+    
+    if (showUpsell) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [showUpsell]);
 
   const scrollToPricing = () => {
@@ -281,7 +290,7 @@ export default function App() {
       {/* Upsell Pop-up */}
       <AnimatePresence>
         {showUpsell && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 sm:p-4">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 sm:p-4 overflow-y-auto">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setShowUpsell(false)} className="absolute inset-0 bg-[#0C2551]/80 backdrop-blur-sm" />
             <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }} className="relative w-full max-w-sm bg-[#0C2551] rounded-[2.5rem] p-8 sm:p-10 shadow-2xl border border-white/10 overflow-hidden text-center">
               <div role="button" tabIndex={0} onClick={() => setShowUpsell(false)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setShowUpsell(false); }} className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors cursor-pointer">
