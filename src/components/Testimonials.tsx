@@ -154,12 +154,12 @@ const Testimonials: React.FC<{ testimonials?: Testimonial[] }> = () => {
             {carouselImages.map((src, index) => (
               <div
                 key={index}
-                className="w-[60vw] md:w-[320px] shrink-0 transform transition-transform duration-500 hover:scale-[1.01]"
+                className="w-[60vw] md:w-[320px] shrink-0 transform transition-transform duration-500 hover:scale-[1.01] aspect-[9/16] relative bg-slate-100 rounded-2xl overflow-hidden"
               >
                 <img
                   src={src}
                   alt={`Depoimento ${index + 1}`}
-                  className="w-full h-auto object-contain rounded-none border-0 shadow-none block pointer-events-none select-none"
+                  className="w-full h-full object-cover block pointer-events-none select-none"
                   loading="lazy"
                   decoding="async"
                 />

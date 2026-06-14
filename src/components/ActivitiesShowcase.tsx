@@ -53,12 +53,12 @@ export const ActivitiesShowcase: React.FC<ActivitiesShowcaseProps> = () => {
             {carouselImages.map((src, index) => (
               <div
                 key={index}
-                className="w-[280px] md:w-[320px] shrink-0 transform transition-transform duration-500 hover:scale-[1.05] cursor-default"
+                className="w-[280px] md:w-[320px] shrink-0 transform transition-transform duration-500 hover:scale-[1.05] cursor-default aspect-[3/4] bg-slate-50 rounded-xl overflow-hidden relative"
               >
                 <img
                   src={src}
                   alt={`Atividade ${index + 1}`}
-                  className="w-full aspect-[3/4] object-contain"
+                  className="w-full h-full object-contain"
                   loading="lazy"
                   decoding="async"
                 />

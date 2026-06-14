@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect, lazy, Suspense, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { 
   CheckCircle2, 
@@ -28,6 +28,34 @@ const Testimonials = lazy(() => import("./components/Testimonials"));
 const Bonus = lazy(() => import("./components/Bonus"));
 const Pricing = lazy(() => import("./components/Pricing"));
 const ActivitiesShowcase = lazy(() => import("./components/ActivitiesShowcase"));
+
+// Viewport Intersection Observer for extreme mobile 4G loading speed
+const LazySection: React.FC<{ children: React.ReactNode; fallback?: React.ReactNode }> = ({ children, fallback = <div className="py-12 bg-white" /> }) => {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsIntersecting(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" } // triggers loading slightly before scrolling into view for a smooth layout transition
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  return <div ref={ref}>{isIntersecting ? children : fallback}</div>;
+};
 
 // --- Components ---
 
@@ -149,11 +177,11 @@ export default function App() {
               Mais de 600 atividades práticas prontas para aplicar ainda hoje
             </span>
 
-            <div className="mx-auto max-w-sm rounded-[2rem] overflow-hidden shadow-2xl bg-slate-100">
+            <div className="mx-auto max-w-sm rounded-[2rem] overflow-hidden shadow-2xl bg-slate-100 aspect-[4/5] w-full relative">
               <img 
                 src="https://i.imgur.com/Q2kijes.png" 
                 alt="Kit Estratégico BNCC"
-                className="w-full h-auto"
+                className="w-full h-full object-cover"
                 loading="eager"
                 decoding="sync"
                 fetchPriority="high"
@@ -210,10 +238,18 @@ export default function App() {
       </section>
 
       <Suspense fallback={<div className="py-12 bg-white" />}>
-        <ActivitiesShowcase />
-        <Bonus />
-        <Testimonials testimonials={testimonialsData} />
-        <Pricing setShowUpsell={setShowUpsell} />
+        <LazySection>
+          <ActivitiesShowcase />
+        </LazySection>
+        <LazySection fallback={<div className="py-12 bg-[#06132b]" />}>
+          <Bonus />
+        </LazySection>
+        <LazySection>
+          <Testimonials testimonials={testimonialsData} />
+        </LazySection>
+        <LazySection>
+          <Pricing setShowUpsell={setShowUpsell} />
+        </LazySection>
       </Suspense>
 
       {/* Guarantee Section */}
