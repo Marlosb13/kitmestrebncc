@@ -61,8 +61,6 @@ export const ActivitiesShowcase: React.FC<ActivitiesShowcaseProps> = () => {
                   className="w-full h-full object-contain"
                   loading="lazy"
                   decoding="async"
-                  width={320}
-                  height={427}
                 />
               </div>
             ))}

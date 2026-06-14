@@ -8,9 +8,18 @@ import { AnimatePresence, motion } from "motion/react";
 import { 
   CheckCircle2, 
   Clock, 
+  BookOpen, 
   ShieldCheck, 
-  ArrowRight, 
-  AlertCircle, 
+  Users, 
+  Filter, 
+  Calendar, 
+  ClipboardCheck, 
+  Sparkles,
+  Lock,
+  ArrowRight,
+  Star,
+  Quote,
+  AlertCircle,
   XCircle
 } from "lucide-react";
 
@@ -281,22 +290,9 @@ export default function App() {
       {/* Upsell Pop-up */}
       <AnimatePresence>
         {showUpsell && (
-          <div className="fixed inset-0 z-[100] overflow-y-auto flex items-center justify-center p-4 sm:p-2">
-            {/* Backdrop overlay (dark glass effect) - always pinned to visual viewport */}
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              exit={{ opacity: 0 }} 
-              onClick={() => setShowUpsell(false)} 
-              className="fixed inset-0 bg-[#0C2551]/85 backdrop-blur-sm pointer-events-auto" 
-            />
-            {/* Responsive modal card - margin-auto ensures perfect center layout or scrollable fallback */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9, y: 20 }} 
-              animate={{ opacity: 1, scale: 1, y: 0 }} 
-              exit={{ opacity: 0, scale: 0.9, y: 20 }} 
-              className="relative z-10 w-full max-w-sm bg-[#0C2551] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 shadow-2xl border border-white/10 overflow-hidden text-center m-auto pointer-events-auto"
-            >
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 sm:p-4 overflow-y-auto">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setShowUpsell(false)} className="absolute inset-0 bg-[#0C2551]/80 backdrop-blur-sm" />
+            <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }} className="relative w-full max-w-sm bg-[#0C2551] rounded-[2.5rem] p-8 sm:p-10 shadow-2xl border border-white/10 overflow-hidden text-center">
               <div role="button" tabIndex={0} onClick={() => setShowUpsell(false)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setShowUpsell(false); }} className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors cursor-pointer">
                  <XCircle size={24} />
               </div>

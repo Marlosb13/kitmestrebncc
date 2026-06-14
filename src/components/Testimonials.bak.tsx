@@ -162,8 +162,6 @@ const Testimonials: React.FC<{ testimonials?: Testimonial[] }> = () => {
                   className="w-full h-full object-cover block pointer-events-none select-none"
                   loading="lazy"
                   decoding="async"
-                  width={320}
-                  height={569}
                 />
               </div>
             ))}
@@ -175,4 +173,3 @@ const Testimonials: React.FC<{ testimonials?: Testimonial[] }> = () => {
 };
 
 export default Testimonials;
-
