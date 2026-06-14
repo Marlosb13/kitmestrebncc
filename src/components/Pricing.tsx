@@ -48,7 +48,7 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
            <div className="mb-8 text-center sm:text-left">
               <p className="text-white text-xs font-black uppercase tracking-widest mb-1">Hoje por apenas</p>
               <div className="flex items-baseline gap-1 justify-center sm:justify-start">
-                 <span className="text-white text-5xl font-black tracking-tighter italic">R$ 19,90</span>
+                 <span className="text-white text-5xl font-black tracking-tighter italic">R$ 23,90</span>
               </div>
            </div>
 
