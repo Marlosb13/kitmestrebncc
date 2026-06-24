@@ -21,7 +21,7 @@ const Pricing = lazy(() => import("./components/Pricing"));
 const ActivitiesShowcase = lazy(() => import("./components/ActivitiesShowcase"));
 
 // Viewport Intersection Observer for extreme mobile 4G loading speed
-const LazySection: React.FC<{ children: React.ReactNode; fallback?: React.ReactNode }> = ({ children, fallback = <div className="py-12 bg-white" /> }) => {
+const LazySection: React.FC<{ children: React.ReactNode; fallback?: React.ReactNode; id?: string }> = ({ children, fallback = <div className="py-12 bg-white" />, id }) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -45,7 +45,7 @@ const LazySection: React.FC<{ children: React.ReactNode; fallback?: React.ReactN
     };
   }, []);
 
-  return <div ref={ref}>{isIntersecting ? children : fallback}</div>;
+  return <div id={id} ref={ref}>{isIntersecting ? children : fallback}</div>;
 };
 
 // --- Components ---
@@ -178,12 +178,8 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-slate-200 overflow-x-hidden">
       {/* Sticky Countdown Bar */}
-      <div className="sticky top-0 z-50 bg-[#0C2551] text-white py-2 px-4 flex items-center justify-center gap-3 text-xs font-bold border-b border-white/10">
-        <Clock size={14} className="text-[#e4bf23]" />
-        <span>Termina em:</span>
-        <span className="bg-[#e4bf23] text-[#0C2551] px-2 py-0.5 rounded font-mono text-sm tracking-wider">
-          {formatTime(timeLeft)}
-        </span>
+      <div className="sticky top-0 z-50 bg-red-600 text-white py-3 px-4 flex items-center justify-center text-[10px] sm:text-xs font-black border-b border-white/10 text-center uppercase tracking-wider">
+        <span>OFERTA ESPECIAL DISPONÍVEL SOMENTE HOJE NESSE VALOR PROMOCIONAL</span>
       </div>
 
       {/* Hero Section */}
@@ -268,7 +264,7 @@ export default function App() {
         <LazySection>
           <Testimonials testimonials={testimonialsData} />
         </LazySection>
-        <LazySection>
+        <LazySection id="pricing">
           <Pricing setShowUpsell={setShowUpsell} />
         </LazySection>
       </Suspense>
