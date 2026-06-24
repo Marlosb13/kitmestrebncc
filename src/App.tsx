@@ -304,7 +304,7 @@ export default function App() {
                 <Badge className="bg-[#e4bf23] text-[#0C2551] px-4 py-1.5 font-black text-[10px] rounded-full shadow-lg">Oferta exclusiva antes de finalizar</Badge>
                 <div className="space-y-2">
                   <p className="text-[#e4bf23] text-xs font-black uppercase tracking-widest leading-none">Espere! Libere o Kit Completo com Desconto</p>
-                  <h3 className="text-xl sm:text-2xl font-black text-white leading-tight">Hoje você pode desbloquear as +600 Atividades de Pensamento Computacional BNCC por apenas <span className="text-[#e4bf23]">R$ 13,90</span></h3>
+                  <h3 className="text-xl sm:text-2xl font-black text-white leading-tight">Hoje você pode desbloquear as +600 Atividades de Pensamento Computacional BNCC por apenas <span className="text-[#e4bf23]">R$ 14,90</span></h3>
                 </div>
                 <div className="py-2 px-4 bg-white/5 rounded-xl border border-white/5">
                   <p className="text-white/70 text-xs font-bold">+600 atividades prontas + bônus exclusivos + acesso imediato</p>
@@ -314,7 +314,7 @@ export default function App() {
                     href="https://pagamento.checkoutseguro.shop/checkout/v5/o8Ob1mv5B2Y0buiTTHeP"
                     className="py-5 text-sm sm:text-base bg-[#e4bf23] text-[#0C2551] uppercase font-black tracking-tight w-full rounded-xl flex items-center justify-center shadow-xl shadow-yellow-500/10 hover:bg-[#d4b020] transition-colors"
                   >
-                    QUERO O KIT COMPLETO POR R$ 13,90
+                    QUERO O KIT COMPLETO POR R$ 14,90
                   </a>
 
                   <a 
