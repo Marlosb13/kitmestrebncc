@@ -149,7 +149,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-slate-200 overflow-x-hidden">
       {/* Sticky Countdown Bar */}
-      <div className="sticky top-0 z-50 bg-red-600 text-white py-3 px-4 flex items-center justify-center text-[10px] sm:text-xs font-black border-b border-white/10 text-center uppercase tracking-wider">
+      <div className="sticky top-0 z-50 bg-[#0C2551] text-white py-3 px-4 flex items-center justify-center text-[10px] sm:text-xs font-black border-b border-white/10 text-center uppercase tracking-wider">
         <span>OFERTA ESPECIAL DISPONÍVEL SOMENTE HOJE NESSE VALOR PROMOCIONAL</span>
       </div>
 
