@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect, lazy, Suspense, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { 
   CheckCircle2, 
@@ -14,39 +14,10 @@ import {
   XCircle
 } from "lucide-react";
 
-// Lazy Loaded Components
-const Testimonials = lazy(() => import("./components/Testimonials"));
-const Bonus = lazy(() => import("./components/Bonus"));
-const Pricing = lazy(() => import("./components/Pricing"));
-const ActivitiesShowcase = lazy(() => import("./components/ActivitiesShowcase"));
-
-// Viewport Intersection Observer for extreme mobile 4G loading speed
-const LazySection: React.FC<{ children: React.ReactNode; fallback?: React.ReactNode; id?: string }> = ({ children, fallback = <div className="py-12 bg-white" />, id }) => {
-  const [isIntersecting, setIsIntersecting] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsIntersecting(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "300px" } // triggers loading slightly before scrolling into view for a smooth layout transition
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  return <div id={id} ref={ref}>{isIntersecting ? children : fallback}</div>;
-};
+import Testimonials from "./components/Testimonials";
+import Bonus from "./components/Bonus";
+import Pricing from "./components/Pricing";
+import ActivitiesShowcase from "./components/ActivitiesShowcase";
 
 // --- Components ---
 
@@ -254,20 +225,12 @@ export default function App() {
         </div>
       </section>
 
-      <Suspense fallback={<div className="py-12 bg-white" />}>
-        <LazySection>
-          <ActivitiesShowcase />
-        </LazySection>
-        <LazySection fallback={<div className="py-12 bg-[#06132b]" />}>
-          <Bonus />
-        </LazySection>
-        <LazySection>
-          <Testimonials testimonials={testimonialsData} />
-        </LazySection>
-        <LazySection id="pricing">
-          <Pricing setShowUpsell={setShowUpsell} />
-        </LazySection>
-      </Suspense>
+      <ActivitiesShowcase />
+      <Bonus />
+      <Testimonials testimonials={testimonialsData} />
+      <div id="pricing">
+        <Pricing setShowUpsell={setShowUpsell} />
+      </div>
 
       {/* Guarantee Section */}
       <section className="py-12 px-6 bg-slate-50">
