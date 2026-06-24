@@ -209,9 +209,6 @@ export default function App() {
             <Button variant="success" className="py-6 rounded-2xl text-xl bg-[#22c55e] hover:bg-[#16a34a] shadow-lg" onClick={scrollToPricing}>
               Quero Adquirir Agora <ArrowRight size={22} className="stroke-[3]" />
             </Button>
-            <div className="flex items-center justify-center gap-x-2 text-red-500 font-black text-[10px] uppercase tracking-widest">
-              <AlertCircle size={14} /> <span>Oferta disponível somente nesta página</span>
-            </div>
           </div>
         </div>
       </section>
@@ -255,8 +252,13 @@ export default function App() {
       {/* Guarantee Section */}
       <section className="py-12 px-6 bg-slate-50">
         <div className="max-w-md mx-auto bg-white rounded-[2.5rem] p-10 text-center shadow-xl border border-slate-100 flex flex-col items-center space-y-6">
-          <ShieldCheck className="text-[#e4bf23]" size={64} />
-          <h2 className="text-2xl font-black text-[#0C2551] uppercase tracking-tight">Garantia incondicional de 15 dias</h2>
+          <img 
+            src="https://i.postimg.cc/YS0N6Xb8/Selo-Garantia-30-Dias-(1).png" 
+            alt="Selo de Garantia" 
+            className="w-40 h-auto object-contain" 
+            referrerPolicy="no-referrer"
+          />
+          <h2 className="text-2xl font-black text-[#0C2551] uppercase tracking-tight">Garantia total de 15 dias</h2>
           <p className="text-base text-slate-500 font-bold leading-relaxed">
             Se você sentir que o material não faz sentido para sua realidade, basta solicitar o reembolso dentro de 15 dias.
           </p>

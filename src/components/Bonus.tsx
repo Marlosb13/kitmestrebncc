@@ -42,7 +42,6 @@ const Bonus: React.FC = () => {
       <div className="text-center space-y-4 mb-12">
         <span className="inline-block px-6 py-2 rounded-full text-xs font-black uppercase tracking-wider bg-[#e4bf23] text-[#0C2551]">BÔNUS EXCLUSIVOS</span>
         <h2 className="text-3xl font-black text-white leading-tight">Bônus Exclusivos Para Quem Garantir as +600 Atividades de Pensamento Computacional BNCC Hoje</h2>
-        <p className="text-center text-white/70 text-sm max-w-xs mx-auto">Levando o Kit Estratégico Essencial HOJE, você desbloqueia 4 materiais extras:</p>
       </div>
       
       <div className="grid grid-cols-1 gap-12 max-w-md mx-auto">

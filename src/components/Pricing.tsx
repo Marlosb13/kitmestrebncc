@@ -29,38 +29,30 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
            </div>
 
            <div className="pt-6">
-              <p className="text-white/40 text-xs font-black tracking-widest uppercase">ACESSO COMPLETO + TODOS OS BÔNUS</p>
-              <h3 className="text-3xl font-black text-white mt-1 text-center">+600 Atividades de Pensamento Computacional BNCC</h3>
-              <p className="text-white/60 text-base mt-3 mb-8 text-center">Do 1º ao 5º ano</p>
+              <p className="text-[#e4bf23] text-3xl sm:text-4xl font-black tracking-[0.1em] uppercase mb-8 text-center">PACOTE PREMIUM</p>
            </div>
            
-           <div className="bg-white/5 rounded-[2rem] p-8 mb-8">
-              <p className="text-xs text-white/50 font-black uppercase tracking-[0.2em] mb-4">Valor individual dos materiais:</p>
-              <div className="space-y-3 pb-6 border-b border-white/10">
-                 <div className="flex justify-between text-white text-xs font-bold"><span>Dinâmicas</span> <span className="line-through">R$ 97</span></div>
-                 <div className="flex justify-between text-white text-xs font-bold"><span>Storytelling & Lógica</span> <span className="line-through">R$ 97</span></div>
-                 <div className="flex justify-between text-white text-xs font-bold"><span>Banco de Planos</span> <span className="line-through">R$ 97</span></div>
-                 <div className="flex justify-between text-white text-xs font-bold"><span>Atividades Interdisciplinares</span> <span className="line-through">R$ 97</span></div>
-              </div>
-              <div className="flex justify-between text-[#e4bf23] text-base font-black pt-6"><span>Valor total:</span> <span className="line-through opacity-50 mr-2">R$ 388</span></div>
-           </div>
 
-           <div className="mb-8 text-center sm:text-left">
-              <p className="text-white text-xs font-black uppercase tracking-widest mb-1">Hoje por apenas</p>
-              <div className="flex items-baseline gap-1 justify-center sm:justify-start">
+
+
+           <div className="mb-8 text-center">
+              <p className="text-white text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">Hoje por apenas</p>
+              <div className="flex items-baseline gap-1 justify-center">
                  <span className="text-white text-5xl font-black tracking-tighter italic">R$ 17,90</span>
               </div>
            </div>
 
            <ul className="grid grid-cols-1 gap-4 mb-10">
               {[
-                "Mais de 600 Atividades",
+                "+600 Atividades de Pensamento Computacional BNCC",
                 "Habilidades BNCC organizadas",
-                "Acesso imediato e vitalício",
                 "Atividades de lógica e representação binária",
                 "Roteiros de storytelling",
                 "Guia BNCC comentado",
-                "Conteúdos extras de folclore e raciocínio lógico"
+                "Conteúdos extras de folclore e raciocínio lógico",
+                "Acesso imediato e vitalício",
+                "Garantia de 15 dias",
+                "Entrega diretamente no E-mail"
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm font-bold text-white/80">
                   <CheckCircle2 className="text-[#e4bf23] shrink-0" size={16} /> {item}
@@ -72,38 +64,35 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
              href="https://pagamento.checkoutseguro.shop/checkout/v5/qppegBTZJAhMgbVrsLxw"
              className="w-full py-6 uppercase font-black text-xs rounded-2xl bg-[#22c55e] text-white hover:bg-[#16a34a] transition-colors text-center block"
            >
-              QUERO GARANTIR O KIT COMPLETO
+              COMPRAR PACOTE PREMIUM
            </a>
 
-           <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-3 text-white max-w-[280px] mx-auto">
-             <span className="text-[10px] font-bold flex items-center justify-center gap-1 uppercase tracking-widest text-white/80">✓ Compra protegida</span>
-             <span className="text-[10px] font-bold flex items-center justify-center gap-1 uppercase tracking-widest text-white/80">✓ Liberação imediata</span>
-             <span className="text-[10px] font-bold flex items-center justify-center gap-1 uppercase tracking-widest text-white/80">✓ Garantia de 15 dias</span>
-             <span className="text-[10px] font-bold flex items-center justify-center gap-1 uppercase tracking-widest text-white/80">✓ Suporte direto</span>
+           <div className="hidden">
+             <span className="text-[10px] font-bold flex items-center justify-center gap-1 uppercase tracking-widest text-white/80 whitespace-nowrap">✓ Compra protegida</span>
+             <span className="text-[10px] font-bold flex items-center justify-center gap-1 uppercase tracking-widest text-white/80 whitespace-nowrap">✓ Garantia de 15 dias</span>
            </div>
         </div>
 
         {/* Secondary Card */}
         <div className="bg-slate-50/50 rounded-[2.5rem] p-10 border-2 border-slate-100 flex flex-col items-center text-center">
-           <p className="text-slate-400 text-[10px] font-black tracking-[0.2em] uppercase">Pacote Básico</p>
-           <h4 className="text-2xl font-black text-[#0C2551] mt-2 mb-4">100 Atividades de Pensamento Computacional BNCC</h4>
-           <p className="text-slate-400 text-xs mb-8">Ideal para quem precisa começar imediatamente</p>
+           <p className="text-[#0C2551] text-3xl sm:text-4xl font-black tracking-wider uppercase">Pacote Básico</p>
+
            
            <div className="mb-8">
-              <p className="text-slate-400 text-sm line-through decoration-red-400 mb-1">De R$ 47</p>
+              <p className="text-slate-400 text-base sm:text-lg line-through decoration-red-400 mb-1">De R$ 47</p>
               <p className="text-[#0C2551] text-xs font-black uppercase tracking-widest mb-1">Hoje por</p>
               <div className="flex items-baseline justify-center gap-1">
                  <span className="text-[#0C2551] text-5xl font-black italic tracking-tighter">R$ 10</span>
               </div>
            </div>
 
-           <ul className="space-y-4 mb-10 w-full">
+           <ul className="space-y-4 mb-10 w-full max-w-[280px] mx-auto">
               {[
-                "100 Atividades",
-                "Conteúdo alinhado à BNCC",
+                "100 Atividades de Pensamento Computacional BNCC",
+                
                 "Acesso Vitalício"
               ].map((item, i) => (
-                <li key={i} className="flex items-center justify-center gap-2 text-sm font-bold text-slate-600">
+                <li key={i} className="flex items-start gap-3 text-sm font-bold text-slate-600 text-left">
                   <CheckCircle2 className="text-[#00BC70] shrink-0" size={18} /> {item}
                 </li>
               ))}
@@ -116,7 +105,7 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setShowUpsell(true); }}
              className="w-full py-4 bg-[#22c55e] hover:bg-[#16a34a] rounded-2xl font-black text-white shadow-lg shadow-green-900/10 transition-colors uppercase text-xs tracking-widest text-center cursor-pointer"
            >
-              QUERO O PACOTE BÁSICO
+              COMPRAR PACOTE BÁSICO
            </div>
         </div>
       </div>
