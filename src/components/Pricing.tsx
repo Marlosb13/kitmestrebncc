@@ -29,7 +29,10 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
            </div>
 
            <div className="pt-6">
-              <p className="text-[#e4bf23] text-3xl sm:text-4xl font-black tracking-[0.1em] uppercase mb-8 text-center">PACOTE PREMIUM</p>
+              <p className="text-[#e4bf23] text-2xl sm:text-3xl font-black tracking-[0.1em] uppercase mb-3 text-center whitespace-nowrap">PACOTE PREMIUM</p>
+              <p className="text-[#e4bf23] text-sm sm:text-base font-black uppercase text-center mb-6">
+                R$ 131,60 em bônus INCLUSOS GRÁTIS,
+              </p>
            </div>
            
 
@@ -44,18 +47,23 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
 
            <ul className="grid grid-cols-1 gap-4 mb-10">
               {[
-                "+600 Atividades de Pensamento Computacional BNCC",
-                "Habilidades BNCC organizadas",
-                "Atividades de lógica e representação binária",
-                "Roteiros de storytelling",
-                "Guia BNCC comentado",
-                "Conteúdos extras de folclore e raciocínio lógico",
-                "Acesso imediato e vitalício",
-                "Garantia de 15 dias",
-                "Entrega diretamente no E-mail"
+                { text: "+600 Atividades de Pensamento Computacional BNCC", icon: "check" },
+                { text: "Habilidades BNCC organizadas", icon: "gift" },
+                { text: "Atividades de lógica e representação binária", icon: "gift" },
+                { text: "Roteiros de storytelling", icon: "gift" },
+                { text: "Guia BNCC comentado", icon: "gift" },
+                { text: "Conteúdos extras de folclore e raciocínio lógico", icon: "gift" },
+                { text: "Acesso imediato e vitalício", icon: "check" },
+                { text: "Garantia de 15 dias", icon: "check" },
+                { text: "Entrega diretamente no E-mail", icon: "check" }
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm font-bold text-white/80">
-                  <CheckCircle2 className="text-[#e4bf23] shrink-0" size={16} /> {item}
+                  {item.icon === "gift" ? (
+                    <span className="shrink-0 text-base leading-none">🎁</span>
+                  ) : (
+                    <CheckCircle2 className="text-[#e4bf23] shrink-0" size={16} />
+                  )}
+                  <span>{item.text}</span>
                 </li>
               ))}
            </ul>
@@ -75,7 +83,7 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
 
         {/* Secondary Card */}
         <div className="bg-slate-50/50 rounded-[2.5rem] p-10 border-2 border-slate-100 flex flex-col items-center text-center">
-           <p className="text-[#0C2551] text-3xl sm:text-4xl font-black tracking-wider uppercase">Pacote Básico</p>
+           <p className="text-[#0C2551] text-2xl sm:text-3xl font-black tracking-[0.1em] uppercase mb-8 text-center whitespace-nowrap">Pacote Básico</p>
 
            
            <div className="mb-8">

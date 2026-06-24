@@ -316,7 +316,7 @@ export default function App() {
                     href="https://pagamento.checkoutseguro.shop/checkout/v5/o8Ob1mv5B2Y0buiTTHeP"
                     className="py-5 text-sm sm:text-base bg-[#e4bf23] text-[#0C2551] uppercase font-black tracking-tight w-full rounded-xl flex items-center justify-center shadow-xl shadow-yellow-500/10 hover:bg-[#d4b020] transition-colors"
                   >
-                    QUERO O KIT COMPLETO POR R$ 14,90
+                    Comprar com desconto
                   </a>
 
                   <a 
