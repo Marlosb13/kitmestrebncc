@@ -89,12 +89,9 @@ const Bonus: React.FC = () => {
 
       <div className="mt-16 text-center max-w-2xl mx-auto px-6 py-8 rounded-[2.5rem] bg-white/5 border border-white/10 shadow-2xl">
         <p className="text-[#e4bf23] text-sm uppercase tracking-wider font-black mb-2">Valor Total em Bônus :</p>
-        <p className="text-white text-2xl font-black italic mb-4">R$ 131,60</p>
-        <p className="text-white/80 text-sm sm:text-base font-bold leading-relaxed max-w-md mx-auto mb-2">
+        <p className="text-white text-4xl font-black italic mb-4">R$ 131,60</p>
+        <p className="text-white/80 text-sm sm:text-base font-bold leading-relaxed max-w-md mx-auto">
           Hoje você recebe R$ 131,60 em bônus gratuitamente ao escolher o Pacote Premium.
-        </p>
-        <p className="text-[#e4bf23] text-sm font-black tracking-wide mt-3">
-          Conteúdos extras de folclore e raciocínio lógico
         </p>
       </div>
     </section>

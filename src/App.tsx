@@ -131,10 +131,34 @@ export default function App() {
   }, [showUpsell]);
 
   const scrollToPricing = () => {
-    const element = document.getElementById("pricing");
+    const element = document.getElementById("premium-card") || document.getElementById("pricing");
     if (element) {
-      const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - 60;
-      window.scrollTo({ top: targetPosition, behavior: "smooth" });
+      const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - 80;
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = 1500; // 1.5 seconds for extremely slow, smooth, and elegant scroll
+      let start: number | null = null;
+
+      const step = (timestamp: number) => {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        
+        // Easing function: cubic ease-in-out
+        const easeInOutCubic = (t: number) => {
+          return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        };
+
+        const timeFraction = Math.min(progress / duration, 1);
+        const ease = easeInOutCubic(timeFraction);
+        
+        window.scrollTo(0, startPosition + distance * ease);
+        
+        if (progress < duration) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      
+      window.requestAnimationFrame(step);
     }
   };
 
@@ -297,21 +321,20 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }} 
               animate={{ opacity: 1, scale: 1, y: 0 }} 
               exit={{ opacity: 0, scale: 0.9, y: 20 }} 
-              className="relative z-10 w-full max-w-sm bg-[#0C2551] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 shadow-2xl border border-white/10 overflow-hidden text-center m-auto pointer-events-auto"
+              className="relative z-10 w-full max-w-sm bg-[#0C2551] rounded-[2rem] sm:rounded-[2.5rem] py-8 px-5 sm:py-12 sm:px-8 shadow-2xl border border-white/10 overflow-hidden text-center m-auto pointer-events-auto"
             >
               <div role="button" tabIndex={0} onClick={() => setShowUpsell(false)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setShowUpsell(false); }} className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors cursor-pointer">
                  <XCircle size={24} />
               </div>
-              <div className="flex flex-col items-center text-center space-y-6">
+              <div className="flex flex-col items-center text-center space-y-8">
                 <Badge className="bg-[#e4bf23] text-[#0C2551] px-4 py-1.5 font-black text-[10px] rounded-full shadow-lg">Oferta exclusiva antes de finalizar</Badge>
-                <div className="space-y-2">
-                  <p className="text-[#e4bf23] text-xs font-black uppercase tracking-widest leading-none">Espere! Libere o Kit Completo com Desconto</p>
-                  <h3 className="text-xl sm:text-2xl font-black text-white leading-tight">Hoje você pode desbloquear as +600 Atividades de Pensamento Computacional BNCC por apenas <span className="text-[#e4bf23]">R$ 14,90</span></h3>
+                <div className="space-y-4">
+                  <p className="text-[#e4bf23] text-sm sm:text-base font-black uppercase tracking-wider leading-tight">Espere! Liberamos um Desconto Especial no Pacote Premium</p>
+                  <h3 className="text-xs sm:text-sm font-black text-white leading-relaxed">
+                    Você irá receber todas as <span className="text-white">+600 Atividades de Pensamento Computacional BNCC</span> e todos os <span className="text-white">4 Bônus</span> por apenas <span className="text-[#e4bf23]">R$ 14,90</span>
+                  </h3>
                 </div>
-                <div className="py-2 px-4 bg-white/5 rounded-xl border border-white/5">
-                  <p className="text-white/70 text-xs font-bold">+600 atividades prontas + bônus exclusivos + acesso imediato</p>
-                </div>
-                <div className="w-full space-y-4 pt-2">
+                <div className="w-full space-y-6 pt-2">
                   <a 
                     href="https://pagamento.checkoutseguro.shop/checkout/v5/o8Ob1mv5B2Y0buiTTHeP"
                     className="py-5 text-sm sm:text-base bg-[#e4bf23] text-[#0C2551] uppercase font-black tracking-tight w-full rounded-xl flex items-center justify-center shadow-xl shadow-yellow-500/10 hover:bg-[#d4b020] transition-colors"
@@ -319,11 +342,16 @@ export default function App() {
                     Comprar com desconto
                   </a>
 
+                  <div className="flex justify-center items-center gap-6 text-[10px] sm:text-xs text-white/80 font-bold pt-1">
+                    <span className="flex items-center gap-1.5">🛡️ Garantia de 15 dias</span>
+                    <span className="flex items-center gap-1.5">🔒 Compra Segura</span>
+                  </div>
+
                   <a 
                     href="https://pagamento.checkoutseguro.shop/checkout/v5/txbjsUAp3SBSGcqICWkx"
-                    className="text-white/30 text-xs font-bold hover:text-white/50 transition-colors tracking-widest underline underline-offset-4 block"
+                    className="text-white/30 text-xs font-bold hover:text-white/50 transition-colors tracking-widest underline underline-offset-4 block pt-2"
                   >
-                    QUERO O BÁSICO
+                    CONTINUAR COMPRANDO O BÁSICO
                   </a>
                 </div>
               </div>
