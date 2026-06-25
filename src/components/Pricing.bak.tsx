@@ -7,10 +7,12 @@ interface PricingProps {
 
 const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
   const [timeLeft, setTimeLeft] = useState(() => {
-    const saved = localStorage.getItem("promo_timer_seconds");
-    if (saved) {
-      const num = parseInt(saved, 10);
-      if (!isNaN(num) && num > 0) return num;
+    const saved = sessionStorage.getItem("promo_time_left");
+    if (saved !== null) {
+      const parsed = parseInt(saved, 10);
+      if (!isNaN(parsed) && parsed > 0) {
+        return parsed;
+      }
     }
     return 15 * 60; // 15 minutes default
   });
@@ -44,12 +46,13 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
     const interval = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
-          localStorage.setItem("promo_timer_seconds", String(15 * 60));
-          return 15 * 60;
+          clearInterval(interval);
+          sessionStorage.setItem("promo_time_left", "0");
+          return 0;
         }
-        const nextValue = prev - 1;
-        localStorage.setItem("promo_timer_seconds", String(nextValue));
-        return nextValue;
+        const nextTime = prev - 1;
+        sessionStorage.setItem("promo_time_left", nextTime.toString());
+        return nextTime;
       });
     }, 1000);
 
@@ -61,22 +64,14 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
     const mins = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
 
-    const pad = (n: number) => n.toString().padStart(2, "0");
     return {
-      hours: pad(hrs).split(""),
-      minutes: pad(mins).split(""),
-      seconds: pad(secs).split("")
+      hours: hrs.toString().padStart(2, "0").split(""),
+      minutes: mins.toString().padStart(2, "0").split(""),
+      seconds: secs.toString().padStart(2, "0").split(""),
     };
   };
 
   const timeFormatted = formatTime(timeLeft);
-
-  useEffect(() => {
-    // Utmify propagation for SPAs
-    if ((window as any).utmifyPropagate) {
-      (window as any).utmifyPropagate();
-    }
-  }, []);
 
   return (
     <section id="pricing" className="py-12 px-6 bg-white text-center">
@@ -135,9 +130,12 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
            <p className="text-[#0C2551] text-2xl sm:text-3xl font-black tracking-[0.1em] uppercase mb-8 text-center whitespace-nowrap">Pacote Básico</p>
 
            
-           <div className="mb-8">
-              <p className="text-slate-400 text-base sm:text-lg font-black mb-1">De R$ 47</p>
-              <div className="flex items-baseline justify-center gap-1">
+
+
+
+           <div className="mb-8 text-center">
+              <p className="text-slate-400 text-base sm:text-lg font-black mb-1 uppercase">DE R$ 47,00</p>
+              <div className="flex items-baseline gap-1 justify-center">
                  <span className="text-[#0C2551] text-6xl font-black italic tracking-tighter">R$ 10</span>
               </div>
            </div>

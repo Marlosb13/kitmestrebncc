@@ -42,7 +42,7 @@ const Bonus: React.FC = () => {
   ];
 
   return (
-    <section className="py-12 px-6 bg-[#06132b]">
+    <section id="bonus" className="py-12 px-6 bg-[#06132b]">
       <div className="text-center space-y-4 mb-12">
         <span className="inline-block px-6 py-2 rounded-full text-xs font-black uppercase tracking-wider bg-[#e4bf23] text-[#0C2551]">BÔNUS EXCLUSIVOS</span>
         <h2 className="text-3xl font-black text-white leading-tight">Bônus Exclusivos Para Quem Garantir as +600 Atividades de Pensamento Computacional BNCC Hoje</h2>

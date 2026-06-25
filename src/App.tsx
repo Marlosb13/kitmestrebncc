@@ -133,6 +133,38 @@ export default function App() {
     }
   };
 
+  const scrollToBonus = () => {
+    const element = document.getElementById("bonus");
+    if (element) {
+      const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - 80;
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = 2500; // 2.5 seconds for extremely slow, smooth, and elegant scroll to the bonus section
+      let start: number | null = null;
+
+      const step = (timestamp: number) => {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        
+        // Easing function: cubic ease-in-out
+        const easeInOutCubic = (t: number) => {
+          return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        };
+
+        const timeFraction = Math.min(progress / duration, 1);
+        const ease = easeInOutCubic(timeFraction);
+        
+        window.scrollTo(0, startPosition + distance * ease);
+        
+        if (progress < duration) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      
+      window.requestAnimationFrame(step);
+    }
+  };
+
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
@@ -197,7 +229,7 @@ export default function App() {
           </div>
 
           <div className="pt-4 space-y-4">
-            <Button variant="success" className="py-6 rounded-2xl text-xl bg-[#22c55e] hover:bg-[#16a34a] shadow-lg" onClick={scrollToPricing}>
+            <Button variant="success" className="py-6 rounded-2xl text-xl bg-[#22c55e] hover:bg-[#16a34a] shadow-lg" onClick={scrollToBonus}>
               Quero Adquirir Agora <ArrowRight size={22} className="stroke-[3]" />
             </Button>
           </div>
@@ -238,7 +270,11 @@ export default function App() {
           <img 
             src="https://i.postimg.cc/YS0N6Xb8/Selo-Garantia-30-Dias-(1).png" 
             alt="Selo de Garantia" 
-            className="w-40 h-auto object-contain" 
+            className="w-40 h-40 object-contain" 
+            loading="lazy"
+            decoding="async"
+            width={160}
+            height={160}
             referrerPolicy="no-referrer"
           />
           <h2 className="text-2xl font-black text-[#0C2551] uppercase tracking-tight">Garantia total de 15 dias</h2>
