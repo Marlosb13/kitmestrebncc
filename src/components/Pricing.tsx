@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect } from "react";
 import { Star, CheckCircle2, ArrowDown } from "lucide-react";
 
 interface PricingProps {
@@ -6,71 +6,6 @@ interface PricingProps {
 }
 
 const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
-  const [timeLeft, setTimeLeft] = useState(() => {
-    const saved = localStorage.getItem("promo_timer_seconds");
-    if (saved) {
-      const num = parseInt(saved, 10);
-      if (!isNaN(num) && num > 0) return num;
-    }
-    return 15 * 60; // 15 minutes default
-  });
-
-  const [hasStarted, setHasStarted] = useState(() => {
-    return sessionStorage.getItem("promo_timer_started") === "true";
-  });
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (hasStarted) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setHasStarted(true);
-          sessionStorage.setItem("promo_timer_started", "true");
-        }
-      },
-      { threshold: 0.5 } // Triggers when at least 50% of the card is visible on screen
-    );
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-    return () => observer.disconnect();
-  }, [hasStarted]);
-
-  useEffect(() => {
-    if (!hasStarted) return;
-
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          localStorage.setItem("promo_timer_seconds", String(15 * 60));
-          return 15 * 60;
-        }
-        const nextValue = prev - 1;
-        localStorage.setItem("promo_timer_seconds", String(nextValue));
-        return nextValue;
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [hasStarted]);
-
-  const formatTime = (seconds: number) => {
-    const hrs = Math.floor(seconds / 3600);
-    const mins = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-
-    const pad = (n: number) => n.toString().padStart(2, "0");
-    return {
-      hours: pad(hrs).split(""),
-      minutes: pad(mins).split(""),
-      seconds: pad(secs).split("")
-    };
-  };
-
-  const timeFormatted = formatTime(timeLeft);
-
   useEffect(() => {
     // Utmify propagation for SPAs
     if ((window as any).utmifyPropagate) {
@@ -80,51 +15,6 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
 
   return (
     <section id="pricing" className="py-12 px-6 bg-white text-center">
-      {/* Promo Countdown Card */}
-      <div ref={containerRef} className="max-w-3xl mx-auto mb-12 px-2 xs:px-4">
-        <div className="bg-white border-2 border-[#0C2551]/10 rounded-[2rem] p-4 xs:p-6 sm:p-8 shadow-[0_20px_50px_rgba(12,37,81,0.15),_inset_0_-6px_0_rgba(12,37,81,0.1)] text-center flex flex-col items-center">
-          <p className="text-[#0C2551] text-[15px] xs:text-lg sm:text-xl md:text-2xl font-black tracking-wide uppercase mb-2">
-            OFERTA PROMOCIONAL DISPONÍVEL NESTE MOMENTO
-          </p>
-          <p className="text-[#0C2551]/70 text-[13px] xs:text-sm sm:text-base font-bold mb-6">
-            Esta condição fica disponível por:
-          </p>
-          
-          <div className="flex items-center gap-0.5 xs:gap-1 sm:gap-2">
-            {/* Hours */}
-            <div className="flex gap-0.5 xs:gap-1">
-              {timeFormatted.hours.map((digit, i) => (
-                <div key={`h-${i}`} className="w-8 h-12 xs:w-10 xs:h-14 sm:w-12 sm:h-16 bg-amber-50 text-[#0C2551] border border-amber-200/80 rounded-lg xs:rounded-xl sm:rounded-2xl flex items-center justify-center text-lg xs:text-xl sm:text-2xl font-black shadow-md shadow-[#0C2551]/5">
-                  {digit}
-                </div>
-              ))}
-            </div>
-            
-            <span className="text-[#0C2551] text-xl xs:text-2xl sm:text-3xl font-black px-1 sm:px-2 animate-pulse">:</span>
-            
-            {/* Minutes */}
-            <div className="flex gap-0.5 xs:gap-1">
-              {timeFormatted.minutes.map((digit, i) => (
-                <div key={`m-${i}`} className="w-8 h-12 xs:w-10 xs:h-14 sm:w-12 sm:h-16 bg-amber-50 text-[#0C2551] border border-amber-200/80 rounded-lg xs:rounded-xl sm:rounded-2xl flex items-center justify-center text-lg xs:text-xl sm:text-2xl font-black shadow-md shadow-[#0C2551]/5">
-                  {digit}
-                </div>
-              ))}
-            </div>
-            
-            <span className="text-[#0C2551] text-xl xs:text-2xl sm:text-3xl font-black px-1 sm:px-2 animate-pulse">:</span>
-            
-            {/* Seconds */}
-            <div className="flex gap-0.5 xs:gap-1">
-              {timeFormatted.seconds.map((digit, i) => (
-                <div key={`s-${i}`} className="w-8 h-12 xs:w-10 xs:h-14 sm:w-12 sm:h-16 bg-amber-50 text-[#0C2551] border border-amber-200/80 rounded-lg xs:rounded-xl sm:rounded-2xl flex items-center justify-center text-lg xs:text-xl sm:text-2xl font-black shadow-md shadow-[#0C2551]/5">
-                  {digit}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="text-center mb-10">
         <h2 className="text-4xl font-black text-[#0C2551] mt-4">Escolha a opção ideal para você</h2>
       </div>
