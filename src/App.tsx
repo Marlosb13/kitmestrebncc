@@ -228,11 +228,7 @@ export default function App() {
             ))}
           </div>
 
-          <div className="pt-4 space-y-4">
-            <Button variant="success" className="py-6 rounded-2xl text-xl bg-[#22c55e] hover:bg-[#16a34a] shadow-lg" onClick={scrollToBonus}>
-              Quero Adquirir Agora <ArrowRight size={22} className="stroke-[3]" />
-            </Button>
-          </div>
+
         </div>
       </section>
 
