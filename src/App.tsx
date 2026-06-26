@@ -340,9 +340,9 @@ export default function App() {
 
                   <a 
                     href="https://pagamento.checkoutseguro.shop/checkout/v5/txbjsUAp3SBSGcqICWkx"
-                    className="text-white/30 text-xs font-bold hover:text-white/50 transition-colors tracking-widest underline underline-offset-4 block pt-2"
+                    className="text-white/30 text-xs font-bold hover:text-white/50 transition-colors tracking-widest underline underline-offset-4 block pt-2 whitespace-nowrap"
                   >
-                    CONTINUAR COMPRANDO O BÁSICO
+                    Não, quero o Pacote Básico de R$ 10
                   </a>
                 </div>
               </div>
