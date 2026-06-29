@@ -1,12 +1,15 @@
-// Última atualização: Remoção da seção de oferta promocional com countdown
+// Última atualização: Remoção da seção de oferta promocional com countdown e propagação de UTMs
 import React, { useEffect } from "react";
 import { Star, CheckCircle2, ArrowDown } from "lucide-react";
+import { useUtmPropagation } from "../utils/utm";
 
 interface PricingProps {
   setShowUpsell: (show: boolean) => void;
 }
 
 const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
+  const { getPropagatedUrl } = useUtmPropagation();
+
   useEffect(() => {
     // Utmify propagation for SPAs
     if ((window as any).utmifyPropagate) {
@@ -154,7 +157,7 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
            </ul>
 
            <a 
-             href="https://ggcheckout.app/checkout/v5/qppegBTZJAhMgbVrsLxw"
+             href={getPropagatedUrl("https://ggcheckout.app/checkout/v5/qppegBTZJAhMgbVrsLxw")}
              className="w-full py-6 uppercase font-black text-sm sm:text-lg rounded-2xl bg-[#22c55e] text-white hover:bg-[#16a34a] transition-colors text-center block"
            >
               QUERO O PACOTE PREMIUM

@@ -21,6 +21,7 @@ import Testimonials from "./components/Testimonials";
 import Bonus from "./components/Bonus";
 import Pricing from "./components/Pricing";
 import ActivitiesShowcase from "./components/ActivitiesShowcase";
+import { useUtmPropagation } from "./utils/utm";
 
 // --- Components ---
 
@@ -82,6 +83,7 @@ const testimonialsData = [
 export default function App() {
   const [timeLeft, setTimeLeft] = useState(3600);
   const [showUpsell, setShowUpsell] = useState(false);
+  const { getPropagatedUrl } = useUtmPropagation();
 
   useEffect(() => {
     if ((window as any).utmifyPropagate) {
@@ -330,7 +332,7 @@ export default function App() {
                 </div>
                 <div className="w-full space-y-6 pt-2">
                   <a 
-                    href="https://ggcheckout.app/checkout/v5/o8Ob1mv5B2Y0buiTTHeP"
+                    href={getPropagatedUrl("https://ggcheckout.app/checkout/v5/o8Ob1mv5B2Y0buiTTHeP")}
                     className="py-5 text-sm sm:text-base bg-[#e4bf23] text-[#0C2551] uppercase font-black tracking-tight w-full rounded-xl flex items-center justify-center shadow-xl shadow-yellow-500/10 hover:bg-[#d4b020] transition-colors"
                   >
                     Comprar com desconto
@@ -342,7 +344,7 @@ export default function App() {
                   </div>
 
                   <a 
-                    href="https://ggcheckout.app/checkout/v5/txbjsUAp3SBSGcqICWkx"
+                    href={getPropagatedUrl("https://ggcheckout.app/checkout/v5/txbjsUAp3SBSGcqICWkx")}
                     className="text-white/30 text-xs font-bold hover:text-white/50 transition-colors tracking-widest underline underline-offset-4 block pt-2 whitespace-nowrap"
                   >
                     Não, quero o Pacote Básico de R$ 10
