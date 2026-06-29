@@ -3,6 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+// Última atualização: Remoção de botões e personalização de textos dos botões de oferta
+
+
 import React, { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { 

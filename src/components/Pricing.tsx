@@ -1,3 +1,4 @@
+// Última atualização: Remoção da seção de oferta promocional com countdown
 import React, { useEffect } from "react";
 import { Star, CheckCircle2, ArrowDown } from "lucide-react";
 
