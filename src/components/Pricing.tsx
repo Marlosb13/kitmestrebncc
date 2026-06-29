@@ -154,7 +154,7 @@ const Pricing: React.FC<PricingProps> = ({ setShowUpsell }) => {
            </ul>
 
            <a 
-             href="https://pagamento.checkoutseguro.shop/checkout/v5/qppegBTZJAhMgbVrsLxw"
+             href="https://ggcheckout.app/checkout/v5/qppegBTZJAhMgbVrsLxw"
              className="w-full py-6 uppercase font-black text-sm sm:text-lg rounded-2xl bg-[#22c55e] text-white hover:bg-[#16a34a] transition-colors text-center block"
            >
               QUERO O PACOTE PREMIUM

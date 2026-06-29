@@ -330,7 +330,7 @@ export default function App() {
                 </div>
                 <div className="w-full space-y-6 pt-2">
                   <a 
-                    href="https://pagamento.checkoutseguro.shop/checkout/v5/o8Ob1mv5B2Y0buiTTHeP"
+                    href="https://ggcheckout.app/checkout/v5/o8Ob1mv5B2Y0buiTTHeP"
                     className="py-5 text-sm sm:text-base bg-[#e4bf23] text-[#0C2551] uppercase font-black tracking-tight w-full rounded-xl flex items-center justify-center shadow-xl shadow-yellow-500/10 hover:bg-[#d4b020] transition-colors"
                   >
                     Comprar com desconto
@@ -342,7 +342,7 @@ export default function App() {
                   </div>
 
                   <a 
-                    href="https://pagamento.checkoutseguro.shop/checkout/v5/txbjsUAp3SBSGcqICWkx"
+                    href="https://ggcheckout.app/checkout/v5/txbjsUAp3SBSGcqICWkx"
                     className="text-white/30 text-xs font-bold hover:text-white/50 transition-colors tracking-widest underline underline-offset-4 block pt-2 whitespace-nowrap"
                   >
                     Não, quero o Pacote Básico de R$ 10
